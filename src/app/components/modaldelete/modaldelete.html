@@ -1,0 +1,16 @@
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Delete</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <p>Are you sure you want to delete selected records?</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-primary" (click)="modal.dismiss('No click')">No</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Yes click')">Yes</button>
+	</div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-danger" (click)="open(content)">Delete</button>
+
