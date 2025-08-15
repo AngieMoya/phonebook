@@ -1,0 +1,54 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <app-dropdown></app-dropdown>
+      </div>
+      <div class="mb-3">
+        <label for="name">Name</label>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </div>
+	  <div class="mb-3">
+        <label for="phonenumber">Phone number</label>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </div>
+	  <div class="mb-3">
+		<label for="comment">Comment</label>
+		<div class="input-group">
+  			<textarea class="form-control"></textarea>
+		</div>
+	  </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">
+      Save changes
+    </button>
+	<button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('cancel click')">Cancel</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Edit</button>
+
+
+
+
