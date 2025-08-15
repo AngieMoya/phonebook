@@ -1,0 +1,68 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ modalTitle }}</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+
+  <div class="modal-body">
+    <form>
+      @if(showDropdown){
+        <div class="mb-3">
+        <app-dropdown></app-dropdown>
+      </div>
+      }
+      <div class="mb-3">
+        <label for="name">{{ nameLabel }}</label>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="nameValue"
+            name="name"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="phonenumber">{{ phoneLabel }}</label>
+        <div class="input-group input-group-sm mb-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="phoneValue"
+            name="phone"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="comment">{{ commentLabel }}</label>
+        <div class="input-group">
+          <textarea
+            class="form-control"
+            [(ngModel)]="commentValue"
+            name="comment"
+          ></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="onSave(modal)">
+      {{ saveButtonLabel }}
+    </button>
+    <button type="button" class="btn btn-outline-danger" (click)="onCancel(modal)">
+      {{ cancelButtonLabel }}
+    </button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+  {{ modalTitle }}
+</button>
