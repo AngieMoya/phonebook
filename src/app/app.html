@@ -1,10 +1,10 @@
 <div class="container">
   <h1 class="mt-3 text-center">Phone Book</h1>
   <div class="d-flex justify-content-between mt-3">
-    <app-dropdown [options]='contactTypeOptions' [selected]="contactTypeOptions[0]"></app-dropdown>
+    <app-dropdown [options]='contactTypeOptions' [selected]="contactTypeOptions[0]" (selectionChange)="onSelectionChange($event)"></app-dropdown>
     <add></add>
   </div>
-  <app-datagrid></app-datagrid>
+  <app-datagrid [contacts]="filteredContacts()"></app-datagrid>
 </div>
 
 <router-outlet />

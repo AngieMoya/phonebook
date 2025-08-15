@@ -15,12 +15,17 @@ export class Modal {
   contactTypes:DropdownOption[] = CONTACT_TYPES
   
   private modalService = inject(NgbModal);
-
   
   @Input() modalTitle: string = '';
   @Input() nameLabel: string = '';
   @Input() phoneLabel: string = '';
   @Input() commentLabel: string = '';
+  @Input() documentNumberLabel: string = '';
+  @Input() emailLabel: string = '';
+  @Input() organizationNameLabel: string = '';
+  @Input() addressLabel: string = '';
+  @Input() legalRepresentativeLabel: string = '';
+
   @Input() showDropdown: boolean = true;
   @Input() saveButtonLabel: string = '';
   @Input() cancelButtonLabel: string = '';
@@ -29,11 +34,17 @@ export class Modal {
   @Input() nameValue: string = '';
   @Input() phoneValue: string = '';
   @Input() commentValue: string = '';
+  @Input() documentNumberValue: string = '';
+  @Input() emailValue: string = '';
+  @Input() organizationNameValue: string = '';
+  @Input() addressValue: string = '';
+  @Input() legalRepresentativeValue: string = '';
 
 
   @Output() save = new EventEmitter<{ name: string; phone: string; comment: string }>();
   @Output() cancel = new EventEmitter<void>();
 
+  contactTypeSelected = signal<DropdownOption | undefined>(undefined);
   closeResult: WritableSignal<string> = signal('');
 
   open(content: TemplateRef<any>) {
@@ -59,6 +70,10 @@ export class Modal {
   onCancel(modal: any) {
     this.cancel.emit();
     modal.dismiss('cancel click');
+  }
+
+  onSelectionChange(option:DropdownOption){
+    this.contactTypeSelected.set(option)
   }
 
   private getDismissReason(reason: any): string {

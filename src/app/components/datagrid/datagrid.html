@@ -18,15 +18,21 @@
     <tbody class="text-center">
       @for (contact of contacts; track contact.name) {
       <tr>
-        <td>{{ contact.contactType }}</td>
+        <td>{{ mappedContactTypes[contact.contactType].label }}</td>
         <td>{{ contact.name }}</td>
         <td>{{ contact.phoneNumber }}</td>
-        <td>{{ contact.comment }}</td>
+        <td>{{ contact.comments }}</td>
         <td>{{ contact.documentNumber }}</td>
         <td>{{ contact.email }}</td>
         <td>{{ contact.organizationName }}</td>
-        <td>{{ contact.address }}</td>
-        <td>{{ contact.legalRepresentative }}</td>
+        <td>
+          {{
+            contact.contactType === contactTypes[1].value
+              ? contact.publicOrganizationAddress
+              : contact.privateOrganizationAddress
+          }}
+        </td>
+        <td>{{ contact.legalRepresentativeName }}</td>
         <td>
           <modal-edit></modal-edit>
         </td>

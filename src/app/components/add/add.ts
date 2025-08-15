@@ -12,9 +12,15 @@ export class Add {
   title = 'Add';
 
   contact = {
-    name: 'register Name',
-    phone: 'register Phone number',
-    comment: 'register Comment'
+    name: 'add Name',
+    phone: 'add Phone number',
+    comment: 'add Comment',
+    documentNumber: 'add document',
+    email: 'add email',
+    organizationName: 'add organization name',
+    address: 'add address',
+    legalRepresentative: 'add legal representative',
+    
   };
 
   onSave(data: { name: string; phone: string; comment: string }) {

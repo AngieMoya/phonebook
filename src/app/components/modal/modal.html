@@ -12,7 +12,11 @@
   <div class="modal-body">
     <form>
       <div class="mb-3">
-        <app-dropdown [options]="contactTypes" placeholder="Contact types"></app-dropdown>
+        <app-dropdown
+          [options]="contactTypes"
+          placeholder="Contact types"
+          (selectionChange)="onSelectionChange($event)"
+        ></app-dropdown>
       </div>
 
       <div class="mb-3">
@@ -35,6 +39,48 @@
           <textarea class="form-control" [(ngModel)]="commentValue" name="comment"></textarea>
         </div>
       </div>
+      @if (contactTypeSelected()?.value===contactTypes[0].value){
+      <div class="mb-3">
+        <label for="idnumber">{{ documentNumberLabel }}</label>
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="documentNumberValue" name="idnumber" />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email">{{ emailLabel }}</label>
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="emailValue" name="email" />
+        </div>
+      </div>
+      }
+      @if (contactTypeSelected()?.value===contactTypes[1].value){
+      <div class="mb-3">
+        <label for="ogname">{{ organizationNameLabel }}</label>
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="organizationNameValue" name="ogname" />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="address">{{ addressLabel }}</label>
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="addressValue" name="address" />
+        </div>
+      </div>
+    }
+    @if (contactTypeSelected()?.value===contactTypes[2].value){
+      <div class="mb-3">
+        <label for="legalrep">{{ legalRepresentativeLabel }}</label>
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="legalRepresentativeValue" name="legalrep" />
+        </div>
+      </div>
+            <div class="mb-3">
+        <label for="address">{{ addressLabel }}</label>
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="addressValue" name="address" />
+        </div>
+      </div>
+    }
     </form>
   </div>
 

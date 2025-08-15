@@ -16,7 +16,12 @@ export class ModalEdit {
   contact = {
     name: 'edit Name',
     phone: 'edit Phone number',
-    comment: 'edit Comment'
+    comment: 'edit Comment',
+    documentNumber: 'edit document',
+    email: 'edit email',
+    organizationName: 'edit organization name',
+    address: 'edit address',
+    legalRepresentative: 'edit legal representative',
   };
 
   onSave(data: { name: string; phone: string; comment: string }) {
