@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { NgbdModalEdit } from "../modaledit/modaledit";
+import { ModalEdit } from "../modaledit/modaledit";
 import { NgbdModalDelete } from "../modaldelete/modaldelete";
 
 
@@ -14,7 +14,7 @@ interface Contact {
 @Component({
   selector: 'app-datagrid',
   standalone: true,
-  imports: [CommonModule, NgbdModalEdit, NgbdModalDelete],
+  imports: [CommonModule, ModalEdit, NgbdModalDelete],
   templateUrl: './datagrid.html',
   styleUrl: './datagrid.css'
 })

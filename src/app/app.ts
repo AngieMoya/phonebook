@@ -1,15 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Datagrid } from './components/datagrid/datagrid';
-import { NgbdModalDelete } from './components/modaldelete/modaldelete';
-
-
-
+import { Add } from './components/add/add';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Datagrid, NgbdModalDelete],
+  imports: [RouterOutlet, Datagrid, Add],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

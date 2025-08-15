@@ -11,43 +11,28 @@
 
   <div class="modal-body">
     <form>
-      @if(showDropdown){
-        <div class="mb-3">
+      <div class="mb-3">
         <app-dropdown></app-dropdown>
       </div>
-      }
+
       <div class="mb-3">
         <label for="name">{{ nameLabel }}</label>
         <div class="input-group input-group-sm mb-3">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="nameValue"
-            name="name"
-          />
+          <input type="text" class="form-control" [(ngModel)]="nameValue" name="name" />
         </div>
       </div>
 
       <div class="mb-3">
         <label for="phonenumber">{{ phoneLabel }}</label>
         <div class="input-group input-group-sm mb-3">
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="phoneValue"
-            name="phone"
-          />
+          <input type="text" class="form-control" [(ngModel)]="phoneValue" name="phone" />
         </div>
       </div>
 
       <div class="mb-3">
         <label for="comment">{{ commentLabel }}</label>
         <div class="input-group">
-          <textarea
-            class="form-control"
-            [(ngModel)]="commentValue"
-            name="comment"
-          ></textarea>
+          <textarea class="form-control" [(ngModel)]="commentValue" name="comment"></textarea>
         </div>
       </div>
     </form>

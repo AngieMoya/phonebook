@@ -1,6 +1,4 @@
 <div class="container mt-4">
-  <h3>Phone Book</h3>
-
   <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
@@ -20,7 +18,7 @@
         <td>{{ contact.phoneNumber }}</td>
         <td>{{ contact.comment }}</td>
         <td>
-          <ngbd-modal-edit></ngbd-modal-edit>
+          <modal-edit></modal-edit>
         </td>
         <td>
           <ngbd-modal-delete></ngbd-modal-delete>
@@ -30,11 +28,11 @@
     </tbody>
   </table>
 
-  <!-- Mensaje cuando no hay contactos -->
+  <!-- Message if not found contact-->
   @if (contacts.length === 0) {
   <div class="alert alert-info text-center">
     <i class="bi bi-info-circle me-2"></i>
-    No hay contactos registrados
+    Not found contacts
   </div>
   }
 </div>

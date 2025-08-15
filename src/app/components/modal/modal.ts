@@ -14,7 +14,7 @@ export class Modal {
   private modalService = inject(NgbModal);
 
   // Props personalizables
-  @Input() modalTitle: string = 'Padre';
+  @Input() modalTitle: string = 'Title';
   @Input() nameLabel: string = 'Name';
   @Input() phoneLabel: string = 'Phone number';
   @Input() commentLabel: string = 'Comment';

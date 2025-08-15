@@ -3,19 +3,19 @@ import { Modal } from '../modal/modal';
 
 
 @Component({
-  selector: 'modal-edit',
+  selector: 'add',
   standalone: true,
   imports: [Modal],
-  templateUrl: './modaledit.html',
-  styleUrl: './modaledit.css'
+  templateUrl: './add.html',
+  styleUrl: './add.css'
 })
-export class ModalEdit {
-  title = 'Edit';
+export class Add {
+  title = 'Add';
 
   contact = {
-    name: 'edit Name',
-    phone: 'edit Phone number',
-    comment: 'edit Comment'
+    name: 'register Name',
+    phone: 'register Phone number',
+    comment: 'register Comment'
   };
 
   onSave(data: { name: string; phone: string; comment: string }) {
