@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h3>Phone Book</h3>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Contact Type</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Comment</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (contact of contacts; track contact.name) {
+      <tr>
+        <td>{{ contact.contactType }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.phoneNumber }}</td>
+        <td>{{ contact.comment }}</td>
+        <td>
+          <ngbd-modal-edit></ngbd-modal-edit>
+        </td>
+        <td>
+          <ngbd-modal-delete></ngbd-modal-delete>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <!-- Mensaje cuando no hay contactos -->
+  @if (contacts.length === 0) {
+  <div class="alert alert-info text-center">
+    <i class="bi bi-info-circle me-2"></i>
+    No hay contactos registrados
+  </div>
+  }
+</div>
