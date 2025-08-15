@@ -9,6 +9,11 @@ interface Contact {
   name: string;
   phoneNumber: string;
   comment: string;
+  documentNumber: string;
+  email: string;
+  organizationName: string;
+  address: string;
+  legalRepresentative: string;
 }
 
 @Component({
@@ -22,22 +27,37 @@ export class Datagrid {
 
    contacts: Contact[] = [
     {
-      contactType: 'Personal',
+      contactType: 'Persona',
       name: 'Juan Pérez',
       phoneNumber: '+57 300 123 4567',
-      comment: 'Amigo de la universidad'
+      comment: 'Amigo de la universidad',
+      documentNumber: "",
+      email: "",
+      organizationName: "",
+      address: "",
+      legalRepresentative: ""
     },
     {
       contactType: 'Public Organization',
       name: 'María García',
       phoneNumber: '+57 310 987 6543',
-      comment: 'Cliente potencial'
+      comment: 'Cliente potencial',
+      documentNumber: "",
+      email: "",
+      organizationName: "",
+      address: "",
+      legalRepresentative: ""
     },
     {
       contactType: 'Private Organization',
       name: 'Dr. Rodriguez',
       phoneNumber: '+57 320 555 0123',
-      comment: 'Médico de cabecera'
+      comment: 'Médico de cabecera',
+      documentNumber: "",
+      email: "",
+      organizationName: "",
+      address: "",
+      legalRepresentative: ""
     }
   ];
   //edit method

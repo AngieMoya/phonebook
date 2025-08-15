@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,4 +9,9 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class Dropdown {
 
+  @Input() title: string = 'Title';
+  @Input() option1: string = 'option';
+  @Input() option2: string = 'option';
+  @Input() option3: string = 'option';
+  
 }

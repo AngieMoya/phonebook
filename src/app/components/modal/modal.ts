@@ -2,18 +2,19 @@ import { Component, EventEmitter, inject, Input, Output, signal, TemplateRef, Wr
 import { FormsModule } from '@angular/forms'
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Dropdown } from "../dropdown/dropdown";
+import { Typecontact } from "../typecontact/typecontact";
 
 @Component({
   selector: 'ngbd-modal',
   standalone: true,
-  imports: [Dropdown, FormsModule],
+  imports: [FormsModule, Typecontact],
   templateUrl: './modal.html',
 })
 export class Modal {
 
   private modalService = inject(NgbModal);
 
-  // Props personalizables
+  
   @Input() modalTitle: string = 'Title';
   @Input() nameLabel: string = 'Name';
   @Input() phoneLabel: string = 'Phone number';
@@ -22,12 +23,12 @@ export class Modal {
   @Input() saveButtonLabel: string = 'Save changes';
   @Input() cancelButtonLabel: string = 'Cancel';
 
-  // Datos iniciales (pueden venir desde fuera)
+  
   @Input() nameValue: string = '';
   @Input() phoneValue: string = '';
   @Input() commentValue: string = '';
 
-  // Emitir eventos al guardar/cancelar
+
   @Output() save = new EventEmitter<{ name: string; phone: string; comment: string }>();
   @Output() cancel = new EventEmitter<void>();
 

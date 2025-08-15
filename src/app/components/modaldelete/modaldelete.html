@@ -7,8 +7,8 @@
         <p>Are you sure you want to delete selected records?</p>
 	</div>
 	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-danger" (click)="modal.close('Yes click')">Yes</button>
 		<button type="button" class="btn btn-outline-primary" (click)="modal.dismiss('No click')">No</button>
-        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Yes click')">Yes</button>
 	</div>
 </ng-template>
 
