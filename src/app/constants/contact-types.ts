@@ -1,0 +1,1 @@
+export const CONTACT_TYPES = [{label: 'Person', value: 1},{label:'Public Organization', value: 2},{label:'Private Organization', value:3}]

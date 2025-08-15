@@ -1,27 +1,29 @@
 import { Component, EventEmitter, inject, Input, Output, signal, TemplateRef, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Dropdown } from "../dropdown/dropdown";
-import { Typecontact } from "../typecontact/typecontact";
+import { Dropdown, DropdownOption } from '../dropdown/dropdown';
+import { CONTACT_TYPES } from '../../constants/contact-types';
+
 
 @Component({
   selector: 'ngbd-modal',
   standalone: true,
-  imports: [FormsModule, Typecontact],
+  imports: [FormsModule, Dropdown],
   templateUrl: './modal.html',
 })
 export class Modal {
-
+  contactTypes:DropdownOption[] = CONTACT_TYPES
+  
   private modalService = inject(NgbModal);
 
   
-  @Input() modalTitle: string = 'Title';
-  @Input() nameLabel: string = 'Name';
-  @Input() phoneLabel: string = 'Phone number';
-  @Input() commentLabel: string = 'Comment';
+  @Input() modalTitle: string = '';
+  @Input() nameLabel: string = '';
+  @Input() phoneLabel: string = '';
+  @Input() commentLabel: string = '';
   @Input() showDropdown: boolean = true;
-  @Input() saveButtonLabel: string = 'Save changes';
-  @Input() cancelButtonLabel: string = 'Cancel';
+  @Input() saveButtonLabel: string = '';
+  @Input() cancelButtonLabel: string = '';
 
   
   @Input() nameValue: string = '';

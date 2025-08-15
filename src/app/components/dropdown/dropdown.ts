@@ -1,17 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
+export interface DropdownOption {
+  label: string;
+  value: number;
+}
 @Component({
   selector: 'app-dropdown',
+  standalone:true,
   imports: [NgbDropdownModule],
   templateUrl: './dropdown.html',
   styleUrl: './dropdown.css'
 })
 export class Dropdown {
-
-  @Input() title: string = 'Title';
-  @Input() option1: string = 'option';
-  @Input() option2: string = 'option';
-  @Input() option3: string = 'option';
   
+  @Input() options:DropdownOption[] = [];
+  @Input() selected?: DropdownOption;
+  @Input() placeholder = 'Placeholder...';
+
+  @Output() selectionChange = new EventEmitter<DropdownOption>();
+
+  onSelect(option:DropdownOption){
+    this.selected = option;
+    this.selectionChange.emit(option);
+  }
+
 }

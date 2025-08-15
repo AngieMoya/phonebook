@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Modal } from '../modal/modal';
 
-
 @Component({
   selector: 'add',
   standalone: true,
@@ -21,6 +20,7 @@ export class Add {
   onSave(data: { name: string; phone: string; comment: string }) {
     console.log('save inherits', data);
   }
+  
   onCancel() {
     console.log('cancel inherits');
   }

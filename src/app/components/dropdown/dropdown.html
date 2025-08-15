@@ -1,14 +1,16 @@
 <div class="row">
-	<div class="col">
-		<div ngbDropdown class="d-inline-block">
-			<button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-				{{title}}
-			</button>
-			<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-				<button ngbDropdownItem>{{option1}}</button>
-				<button ngbDropdownItem>{{option2}}</button>
-				<button ngbDropdownItem>{{option3}}</button>
-			</div>
-		</div>
-	</div>
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+        {{ selected?.label || placeholder }}
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        @for (option of options; track option.value) {
+        <button class="dropdown-item" type="button" (click)="onSelect(option)">
+          {{ option.label }}
+        </button>
+        }
+      </div>
+    </div>
+  </div>
 </div>
