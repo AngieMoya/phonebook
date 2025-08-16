@@ -9,83 +9,83 @@
     ></button>
   </div>
 
-  <div class="modal-body">
-    <form>
-      <div class="mb-3">
-        <app-dropdown
-          [options]="contactTypes"
-          placeholder="Contact types"
-          (selectionChange)="onSelectionChange($event)"
-        ></app-dropdown>
-      </div>
+  <form [formGroup]="form" class="modal-body">
+    <div class="mb-3">
+      <app-dropdown
+        [options]="contactTypes"
+        placeholder="Contact types"
+        (selectionChange)="onSelectionChange($event)"
+      ></app-dropdown>
 
-      <div class="mb-3">
-        <label for="name">{{ nameLabel }}</label>
-        <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" [(ngModel)]="nameValue" name="name" />
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="phonenumber">{{ phoneLabel }}</label>
-        <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" [(ngModel)]="phoneValue" name="phone" />
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="comment">{{ commentLabel }}</label>
-        <div class="input-group">
-          <textarea class="form-control" [(ngModel)]="commentValue" name="comment"></textarea>
-        </div>
-      </div>
-      @if (contactTypeSelected()?.value===contactTypes[0].value){
-      <div class="mb-3">
-        <label for="idnumber">{{ documentNumberLabel }}</label>
-        <div class="input-group">
-          <input class="form-control" [(ngModel)]="documentNumberValue" name="idnumber" />
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="email">{{ emailLabel }}</label>
-        <div class="input-group">
-          <input class="form-control" [(ngModel)]="emailValue" name="email" />
-        </div>
-      </div>
+      @if (form.get('contactTypeSelected')?.touched && form.get('contactTypeSelected')?.invalid) {
+      <div class="text-danger small">Contact type is required.</div>
       }
-      @if (contactTypeSelected()?.value===contactTypes[1].value){
-      <div class="mb-3">
-        <label for="ogname">{{ organizationNameLabel }}</label>
-        <div class="input-group">
-          <input class="form-control" [(ngModel)]="organizationNameValue" name="ogname" />
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="address">{{ addressLabel }}</label>
-        <div class="input-group">
-          <input class="form-control" [(ngModel)]="addressValue" name="address" />
-        </div>
-      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="name">{{ nameLabel }}</label>
+      <input type="text" class="form-control" formControlName="name" />
+      @if (form.get('name')?.touched && form.get('name')?.invalid) {
+      <div class="text-danger small">Name is required.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="phonenumber">{{ phoneLabel }}</label>
+      <input type="text" class="form-control" formControlName="phoneNumber" />
+      @if (form.get('phoneNumber')?.touched && form.get('phoneNumber')?.invalid) {
+      <div class="text-danger small">Phone number is required.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="comment">{{ commentLabel }}</label>
+      <textarea class="form-control" formControlName="comments"></textarea>
+    </div>
+
+    <!-- Conditional fields based on contact type -->
+    @if (form.get('contactTypeSelected')?.value?.value === contactTypes[0].value) {
+    <div class="mb-3">
+      <label for="idnumber">{{ documentNumberLabel }}</label>
+      <input class="form-control" formControlName="documentNumber" />
+    </div>
+    <div class="mb-3">
+      <label for="email">{{ emailLabel }}</label>
+      <input type="email" class="form-control" formControlName="email" />
+
+      @if (form.get('email')?.touched && form.get('email')?.invalid) {
+      <div class="text-danger small">Please enter a valid email address.</div>
+      }
+    </div>
+
+    } @if (form.get('contactTypeSelected')?.value?.value === contactTypes[1].value) {
+    <div class="mb-3">
+      <label for="ogname">{{ organizationNameLabel }}</label>
+      <input class="form-control" formControlName="organizationName" />
+    </div>
+    <div class="mb-3">
+      <label for="address">{{ addressLabel }}</label>
+      <input class="form-control" formControlName="address" />
+    </div>
+    } @if (form.get('contactTypeSelected')?.value?.value === contactTypes[2].value) {
+    <div class="mb-3">
+      <label for="legalrep">{{ legalRepresentativeLabel }}</label>
+      <input class="form-control" formControlName="legalRepresentative" />
+    </div>
+    <div class="mb-3">
+      <label for="address">{{ addressLabel }}</label>
+      <input class="form-control" formControlName="address" />
+    </div>
     }
-    @if (contactTypeSelected()?.value===contactTypes[2].value){
-      <div class="mb-3">
-        <label for="legalrep">{{ legalRepresentativeLabel }}</label>
-        <div class="input-group">
-          <input class="form-control" [(ngModel)]="legalRepresentativeValue" name="legalrep" />
-        </div>
-      </div>
-            <div class="mb-3">
-        <label for="address">{{ addressLabel }}</label>
-        <div class="input-group">
-          <input class="form-control" [(ngModel)]="addressValue" name="address" />
-        </div>
-      </div>
-    }
-    </form>
-  </div>
+  </form>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success" (click)="onSave(modal)">
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="onSave(modal)"
+      [disabled]="form.invalid"
+    >
       {{ saveButtonLabel }}
     </button>
     <button type="button" class="btn btn-outline-danger" (click)="onCancel(modal)">
