@@ -7,12 +7,14 @@ import {
   inject,
   signal,
   WritableSignal,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Dropdown, DropdownOption } from '../dropdown/dropdown';
-import { CONTACT_TYPES } from '../../constants/contact-types';
-import { CreateContactDto } from '../../services/contacts.service';
+import { CONTACT_TYPES, MAPPED_CONTACT_TYPES } from '../../constants/contact-types';
+import { CreateContactDto, UpdateContactDto } from '../../services/contacts.service';
 
 @Component({
   selector: 'ngbd-modal',
@@ -20,7 +22,7 @@ import { CreateContactDto } from '../../services/contacts.service';
   imports: [ReactiveFormsModule, Dropdown],
   templateUrl: './modal.html',
 })
-export class Modal {
+export class Modal implements OnChanges {
   contactTypes: DropdownOption[] = CONTACT_TYPES;
 
   private modalService = inject(NgbModal);
@@ -36,10 +38,21 @@ export class Modal {
   @Input() addressLabel: string = '';
   @Input() legalRepresentativeLabel: string = '';
 
+  @Input() id: number | undefined;
+  @Input() nameValue: string = '';
+  @Input() phoneValue: string = '';
+  @Input() commentValue: string = '';
+  @Input() documentNumberValue: string = '';
+  @Input() emailValue: string = '';
+  @Input() organizationNameValue: string = '';
+  @Input() addressValue: string = '';
+  @Input() legalRepresentativeValue: string = '';
+  @Input() contactTypeValue: number | undefined;
+
   @Input() saveButtonLabel: string = '';
   @Input() cancelButtonLabel: string = '';
 
-  @Output() save = new EventEmitter<CreateContactDto>();
+  @Output() save = new EventEmitter<CreateContactDto | UpdateContactDto>();
   @Output() cancel = new EventEmitter<void>();
 
   form!: FormGroup;
@@ -66,6 +79,7 @@ export class Modal {
         this.closeResult.set(`Closed with: ${result}`);
       },
       (reason) => {
+        this.form.reset();
         this.closeResult.set(`Dismissed ${this.getDismissReason(reason)}`);
       }
     );
@@ -79,6 +93,7 @@ export class Modal {
 
     const value = this.form.value;
     this.save.emit({
+      id: this.id,
       contactType: value.contactTypeSelected.value,
       name: value.name,
       phoneNumber: value.phoneNumber,
@@ -110,6 +125,24 @@ export class Modal {
         return 'by clicking on a backdrop';
       default:
         return `with: ${reason}`;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.form) {
+      this.form.patchValue({
+        contactTypeSelected: this.contactTypeValue
+          ? MAPPED_CONTACT_TYPES[this.contactTypeValue]
+          : MAPPED_CONTACT_TYPES[0],
+        name: this.nameValue,
+        phoneNumber: this.phoneValue,
+        comments: this.commentValue,
+        documentNumber: this.documentNumberValue,
+        email: this.emailValue,
+        organizationName: this.organizationNameValue,
+        address: this.addressValue,
+        legalRepresentative: this.legalRepresentativeValue,
+      });
     }
   }
 }

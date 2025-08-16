@@ -34,7 +34,7 @@
         </td>
         <td>{{ contact.legalRepresentativeName }}</td>
         <td>
-          <modal-edit></modal-edit>
+          <modal-edit [contact]="contact"></modal-edit>
         </td>
         <td>
           <ngbd-modal-delete [id]="contact.id" (onDelete)="deleteContact($event)"></ngbd-modal-delete>

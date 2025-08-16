@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Datagrid } from './components/datagrid/datagrid';
 import { Add } from './components/add/add';
 import { Dropdown, DropdownOption } from './components/dropdown/dropdown';
-import { CONTACT_TYPES, MAPPED_CONTACT_TYPES_AUX } from './constants/contact-types';
+import { CONTACT_TYPES } from './constants/contact-types';
 import { USERS } from './constants/mock';
 import { Contact } from './interfaces/api-interface';
 import { ContactsService } from './services/contacts.service';

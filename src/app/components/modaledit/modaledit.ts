@@ -1,34 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Modal } from '../modal/modal';
-
-
+import {
+  ContactsService,
+  CreateContactDto,
+  UpdateContactDto,
+} from '../../services/contacts.service';
+import { Contact } from '../../interfaces/api-interface';
 
 @Component({
   selector: 'modal-edit',
   standalone: true,
   imports: [Modal],
   templateUrl: './modaledit.html',
-  styleUrl: './modaledit.css'
+  styleUrl: './modaledit.css',
 })
 export class ModalEdit {
   title = 'Edit';
+  contactsService = inject(ContactsService);
 
-  contact = {
-    name: 'edit Name',
-    phone: 'edit Phone number',
-    comment: 'edit Comment',
-    documentNumber: 'edit document',
-    email: 'edit email',
-    organizationName: 'edit organization name',
-    address: 'edit address',
-    legalRepresentative: 'edit legal representative',
-  };
+  @Input() contact: Contact | undefined;
 
-  onSave(data: { name: string; phone: string; comment: string }) {
-    console.log('save inherits', data);
+  onSave(data: CreateContactDto | UpdateContactDto) {
+    console.log("onUpdate",data)
+    if ('id' in data) {
+      this.contactsService.updateContact(data.id, data).subscribe();
+      console.log('save inherits', data);
+    }
   }
   onCancel() {
     console.log('cancel inherits');
   }
-
 }

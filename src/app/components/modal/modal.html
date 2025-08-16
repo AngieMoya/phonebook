@@ -14,9 +14,9 @@
       <app-dropdown
         [options]="contactTypes"
         placeholder="Contact types"
+        [selected]="form.get('contactTypeSelected')?.value"
         (selectionChange)="onSelectionChange($event)"
       ></app-dropdown>
-
       @if (form.get('contactTypeSelected')?.touched && form.get('contactTypeSelected')?.invalid) {
       <div class="text-danger small">Contact type is required.</div>
       }
