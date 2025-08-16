@@ -1,4 +1,4 @@
-import { Contact } from "../components/datagrid/datagrid";
+import { Contact } from "../interfaces/api-interface";
 
 export const USERS = [
   {

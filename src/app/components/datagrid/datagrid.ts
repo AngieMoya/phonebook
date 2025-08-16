@@ -2,26 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component, Input } from "@angular/core";
 import { ModalEdit } from "../modaledit/modaledit";
 import { NgbdModalDelete } from "../modaldelete/modaldelete";
-import { USERS } from "../../constants/mock";
 import { CONTACT_TYPES, MAPPED_CONTACT_TYPES } from "../../constants/contact-types";
-
-
-export interface Contact {
-  id: number;
-  contactType: number;
-  name: string;
-  phoneNumber: string;
-  comments: string;
-  documentNumber: string;
-  email: string;
-  legalRepresentative: string;
-  publicOrganizationAddress: string;
-  organizationName: string;
-  legalRepresentativeName: string;
-  privateOrganizationAddress: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { Contact } from "../../interfaces/api-interface";
 
 @Component({
   selector: 'app-datagrid',
