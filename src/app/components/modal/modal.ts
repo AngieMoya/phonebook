@@ -1,9 +1,18 @@
-import { Component, EventEmitter, inject, Input, Output, signal, TemplateRef, WritableSignal } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  signal,
+  TemplateRef,
+  WritableSignal,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Dropdown, DropdownOption } from '../dropdown/dropdown';
 import { CONTACT_TYPES } from '../../constants/contact-types';
-
+import { CreateContactDto } from '../../services/contacts.service';
 
 @Component({
   selector: 'ngbd-modal',
@@ -12,10 +21,10 @@ import { CONTACT_TYPES } from '../../constants/contact-types';
   templateUrl: './modal.html',
 })
 export class Modal {
-  contactTypes:DropdownOption[] = CONTACT_TYPES
-  
+  contactTypes: DropdownOption[] = CONTACT_TYPES;
+
   private modalService = inject(NgbModal);
-  
+
   @Input() modalTitle: string = '';
   @Input() nameLabel: string = '';
   @Input() phoneLabel: string = '';
@@ -30,7 +39,6 @@ export class Modal {
   @Input() saveButtonLabel: string = '';
   @Input() cancelButtonLabel: string = '';
 
-  
   @Input() nameValue: string = '';
   @Input() phoneValue: string = '';
   @Input() commentValue: string = '';
@@ -40,8 +48,7 @@ export class Modal {
   @Input() addressValue: string = '';
   @Input() legalRepresentativeValue: string = '';
 
-
-  @Output() save = new EventEmitter<{ name: string; phone: string; comment: string }>();
+  @Output() save = new EventEmitter<CreateContactDto>();
   @Output() cancel = new EventEmitter<void>();
 
   contactTypeSelected = signal<DropdownOption | undefined>(undefined);
@@ -54,15 +61,22 @@ export class Modal {
       },
       (reason) => {
         this.closeResult.set(`Dismissed ${this.getDismissReason(reason)}`);
-      },
+      }
     );
   }
 
   onSave(modal: any) {
     this.save.emit({
+      contactType: this.contactTypeSelected()?.value ?? this.contactTypes[0].value ,
       name: this.nameValue,
-      phone: this.phoneValue,
-      comment: this.commentValue
+      phoneNumber: this.phoneValue,
+      comments: this.commentValue,
+      documentNumber: this.documentNumberValue,
+      email: this.emailValue,
+      organizationName: this.organizationNameValue,
+      publicOrganizationAddress: this.addressValue,
+      legalRepresentativeName: this.legalRepresentativeValue,
+      privateOrganizationAddress: this.addressValue,
     });
     modal.close('Save click');
   }
@@ -72,8 +86,8 @@ export class Modal {
     modal.dismiss('cancel click');
   }
 
-  onSelectionChange(option:DropdownOption){
-    this.contactTypeSelected.set(option)
+  onSelectionChange(option: DropdownOption) {
+    this.contactTypeSelected.set(option);
   }
 
   private getDismissReason(reason: any): string {

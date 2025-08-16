@@ -15,7 +15,7 @@ import { ContactsService } from './services/contacts.service';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App implements OnInit {
+export class App{
   contactsService = inject(ContactsService);
 
   contactTypeSelected = signal<DropdownOption | undefined>(undefined);
@@ -25,18 +25,12 @@ export class App implements OnInit {
   filteredContacts = computed(() => {
     const selected = this.contactTypeSelected();
     if (!selected || selected.value === 0) {
-      return this.contacts(); // all
+      return this.contactsService.contacts(); // all
     }
-    return this.contacts().filter((c) => c.contactType === selected.value);
+    return this.contactsService.contacts().filter((c) => c.contactType === selected.value);
   });
 
   onSelectionChange(option: DropdownOption) {
     this.contactTypeSelected.set(option);
-  }
-
-  ngOnInit() {
-    this.contactsService.getContacts().subscribe((data) => {
-      this.contacts.set(data);
-    });
   }
 }

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Modal } from '../modal/modal';
+import { ContactsService, CreateContactDto } from '../../services/contacts.service';
+import { CONTACT_TYPES } from '../../constants/contact-types';
 
 @Component({
   selector: 'add',
@@ -9,22 +11,11 @@ import { Modal } from '../modal/modal';
   styleUrl: './add.css'
 })
 export class Add {
+  contactsService = inject(ContactsService);
   title = 'Add';
 
-  contact = {
-    name: 'add Name',
-    phone: 'add Phone number',
-    comment: 'add Comment',
-    documentNumber: 'add document',
-    email: 'add email',
-    organizationName: 'add organization name',
-    address: 'add address',
-    legalRepresentative: 'add legal representative',
-    
-  };
-
-  onSave(data: { name: string; phone: string; comment: string }) {
-    console.log('save inherits', data);
+  onSave(data: CreateContactDto) {
+    this.contactsService.createContact(data).subscribe();
   }
   
   onCancel() {

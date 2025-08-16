@@ -6,7 +6,6 @@ export interface Contact {
   comments: string;
   documentNumber: string;
   email: string;
-  legalRepresentative: string;
   publicOrganizationAddress: string;
   organizationName: string;
   legalRepresentativeName: string;

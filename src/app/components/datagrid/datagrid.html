@@ -37,7 +37,7 @@
           <modal-edit></modal-edit>
         </td>
         <td>
-          <ngbd-modal-delete></ngbd-modal-delete>
+          <ngbd-modal-delete [id]="contact.id" (onDelete)="deleteContact($event)"></ngbd-modal-delete>
         </td>
       </tr>
       }
